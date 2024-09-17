@@ -11,10 +11,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
 
 // Export the Express API
-module.exports = app
+module.exports = app;
