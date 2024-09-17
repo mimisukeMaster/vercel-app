@@ -3,10 +3,13 @@ const express = require('express')
 const app = express()
 const PORT = 4000
 
+// 'public/index.html' は '/index.html' としてサーブされるが、特別に '/' ルートを定義していない
+app.use(express.static(path.join(__dirname, 'public')));
 
+// ルートパス '/' にアクセスすると、'public/index.html' を返す
 app.get('/', (req, res) => {
-    res.status(200).json('Welcome, your app is working well');
-})
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 app.listen(PORT, () => {
