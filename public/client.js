@@ -1,9 +1,11 @@
 const text = document.getElementById("text");
+const button = document.getElementById("button");
 
-setTimeout(() => {
-    post();
-}, 3000);
-async function post() {
+button.addEventListener("click", () => {
+    httpPost();
+});
+
+async function httpPost() {
     try {
         const response = await fetch("/api", {
         method: "POST",
