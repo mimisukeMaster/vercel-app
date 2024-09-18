@@ -3,6 +3,8 @@ const express = require('express')
 const path = require('path');
 const app = express()
 const PORT = 4000
+app.use(express.text());
+
 
 app.use("/", express.static(path.join(__dirname, "public")));
 // 'public/index.html' は '/index.html' としてサーブされるが、特別に '/' ルートを定義していない
@@ -13,7 +15,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });*/
 app.post("/api", async (req, res) => {
-    res.status(200).json('Attached endpoint!:::' + req.body)
+    res.send('バックJSとエンドポイントでつながりました!: 送ってきた文章: ' + req.body);
 })
 
 app.use((err, req, res, next) => {
